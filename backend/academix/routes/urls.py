@@ -3,11 +3,11 @@
 '''
 
 from django.urls import path, include;
-# from administration import views;
-# from students import views;
-# from authentication import views;
-# from teachers import views;
-# from academics import views;
 
 urlpatterns = [
+    # authentication
+    path('auth/', include('apps.authentication.urls')),
+    
+    # administration
+    path('admin/', include('apps.administration.urls')),
 ]
