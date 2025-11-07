@@ -20,7 +20,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         # add custom claims
         token['role'] = user.role;
         token['email'] = user.email;
-        token['college_id'] = user.college_id if user.collge else None;
+        token['college_id'] = user.college_id if user.college else None;
         return token;
     
     def validate(self, attrs):
