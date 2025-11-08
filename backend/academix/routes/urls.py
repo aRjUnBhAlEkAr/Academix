@@ -10,4 +10,7 @@ urlpatterns = [
     
     # administration
     path('admin/', include('apps.administration.urls')),
+    
+    # administration
+    path('students/', include('apps.students.urls')),
 ]
