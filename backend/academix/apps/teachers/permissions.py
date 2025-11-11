@@ -6,7 +6,7 @@ class IsSuperUser(BasePermission):
         return bool(request.user and request.user.is_authenticated and request.user.is_superuser);
     
     
-class IsCollegeAdmin(BasePermission):
+class IsCollgeAdmin(BasePermission):
     def has_permission(self, request, view):
         return bool(request.user and request.user.is_authenticated and request.user.role == "collge_admin");
     

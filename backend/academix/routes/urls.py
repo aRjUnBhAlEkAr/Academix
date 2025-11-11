@@ -11,9 +11,6 @@ urlpatterns = [
     # administration
     path('admin/', include('apps.administration.urls')),
     
-    # student
+    # administration
     path('students/', include('apps.students.urls')),
-    
-    # teacher
-    path('api/', include('apps.teachers.urls')),
 ]

@@ -9,7 +9,7 @@ from .models import Teacher;
 from .serializers import TeacherReadSerializer, TeacherCreateSerializer, TeacherUpdateSerializer;
 from .permissions import IsSuperUser, IsCollegeAdmin, IsTeacherOwner;
 
-class TeacherViewSet(viewsets.ModelViewSet):
+class TeacherViewSet(viewSets.ModelViewSet):
     queryset = Teacher.objects.select_related('user').all();
     permission_classes = [IsAuthenticated]  # Additional checks inside methods
 

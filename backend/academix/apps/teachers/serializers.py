@@ -7,7 +7,7 @@ from apps.authentication.models import User;
 
 class NestedUserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User;
+        model = user;
         fields = ['email', 'first_name', 'last_name'];
 
 class TeacherReadSerializer(serializers.ModelSerializer):
