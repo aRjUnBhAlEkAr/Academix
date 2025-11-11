@@ -18,7 +18,7 @@ class Teacher(models.Model):
     
     employee_id = models.CharField(max_length=50, unique=True);
     department = models.CharField(max_length=100, blank=True);
-    hired_date = modles.DateField(null=True, blank=True);
+    hired_date = models.DateField(null=True, blank=True);
     is_active = models.BooleanField(default=True);
     created_at = models.DateTimeField(auto_now_add=True);
     updated_at = models.DateTimeField(auto_now=True);
