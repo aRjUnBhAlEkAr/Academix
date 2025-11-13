@@ -6,7 +6,7 @@ from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenRefreshView
 
 # local imports
-from .views import UserViewSet, MyTokenObtainPairView
+from .views import UserViewSet, MyTokenObtainPairView, current_user;
 
 router = DefaultRouter()
 router.register(r'users', UserViewSet, basename='user')
@@ -14,5 +14,6 @@ router.register(r'users', UserViewSet, basename='user')
 urlpatterns = [
     path('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('users/me/', current_user, name='current_user'),
     path('', include(router.urls)),
 ]

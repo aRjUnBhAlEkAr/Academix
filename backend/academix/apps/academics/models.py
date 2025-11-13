@@ -2,8 +2,8 @@ from django.db import models
 from django.conf import settings;
 
 # Create your models here.
-class Department(models.Models):
-    college = models.ForeignKey('administration.College', on_delete=ndoels.CASCADE, related_name='departments');
+class Department(models.Model):
+    college = models.ForeignKey('administration.College', on_delete=models.CASCADE, related_name='departments');
 
     name = models.CharField(max_length=150);
     code = models.CharField(max_length=50);
@@ -12,7 +12,7 @@ class Department(models.Models):
     
     class Meta:
         unique_together = ('college', 'code');
-        odering = ['name'];
+        ordering = ['name'];
     
     def __str__(self):
         return f"{self.name} ({self.code})";
@@ -41,7 +41,7 @@ class Semester(models.Model):
     
     class Meta:
         unique_together = ('course', 'number');
-        odering = ['course', 'number'];
+        ordering = ['course', 'number'];
         
     def __str__(self):
         return f"{self.course.code} - Sem {self.number}";
@@ -49,7 +49,7 @@ class Semester(models.Model):
 class Subject(models.Model):
     college = models.ForeignKey('administration.College', on_delete=models.CASCADE, related_name='subjects');
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='subjects');
-    semester = models.ForeignKey(Semester, on_delete, models.CASCADE, related_name='subjects');
+    semester = models.ForeignKey(Semester, on_delete= models.CASCADE, related_name='subjects');
     name = models.CharField(max_length=200);
     code = models.CharField(max_length=50);
     
@@ -110,7 +110,7 @@ class Mark(models.Model):
     
 class Attendance(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE, related_name='attendance_records');
-    student = models.ForeignKey('student.Student', on_delete=models.CASCADE, related_name='attendance_records');
+    student = models.ForeignKey('students.Student', on_delete=models.CASCADE, related_name='attendance_records');
     date = models.DateField();
     present = models.BooleanField(default=False);
 
@@ -119,5 +119,5 @@ class Attendance(models.Model):
         ordering = ['-date'];
     
     def __str__(self):
-        return f"{self.student} - {self.subject.code} - {self.date} : {'P' is self.present else 'A'}";
+        return f"{self.student} - {self.subject.code} - {self.date} : {'P' if self.present else 'A'}";
     

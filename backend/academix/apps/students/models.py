@@ -6,7 +6,7 @@ from django.conf import settings;
 
 # Create your models here.
 class Student(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='student_profile');
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='students');
     roll_number = models.CharField(max_length=50, unique=True);
     enrollment_date = models.DateField(auto_now_add=True);
     department = models.CharField(max_length=100, blank=True);
