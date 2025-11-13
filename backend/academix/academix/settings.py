@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # third party app
+    'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     
@@ -56,6 +57,8 @@ INSTALLED_APPS = [
     'apps.authentication',
     'apps.administration',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 AUTH_USER_MODEL = 'authentication.User'
 # defining authentication classes for DRF
@@ -82,6 +85,7 @@ SIMPLE_JWT = {
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
