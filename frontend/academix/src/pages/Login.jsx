@@ -10,10 +10,17 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      await login(email, password);
-      navigate("/dashboard");
-    } catch {
+      const loggedUser = await login(email, password);
+
+      if (loggedUser.role === "student") navigate("/dashboard/student");
+      else if (loggedUser.role === "teacher") navigate("/dashboard/teacher");
+      else if (loggedUser.role === "college_admin")
+        navigate("/dashboard/admin");
+      else if (loggedUser.role === "superuser")
+        navigate("/dashboard/superadmin");
+    } catch (error) {
       alert("Invalid credentials");
     }
   };

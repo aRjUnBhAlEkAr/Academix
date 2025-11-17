@@ -1,19 +1,18 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import "../../styles/Layout.css";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
 
   return (
-    <nav className="navbar">
-      <h1 className="navbar-title">Academix</h1>
-      <div className="navbar-user">
-        <span>{user?.email}</span>
-        <button onClick={logout} className="logout-btn">
-          Logout
-        </button>
-      </div>
-    </nav>
+    <header className="navbar">
+      <h3>Welcome, {user?.first_name || user?.email}</h3>
+
+      <button className="logout-btn" onClick={logout}>
+        Logout
+      </button>
+    </header>
   );
 };
 

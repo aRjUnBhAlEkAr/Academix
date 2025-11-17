@@ -18,10 +18,11 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("access", response.data.access);
       localStorage.setItem("refresh", response.data.refresh);
 
-      // Decode JWT to get user role or use a /me/ endpoint from backend
       const userRes = await axios.get("auth/users/me/");
       setUser(userRes.data);
       localStorage.setItem("user", JSON.stringify(userRes.data));
+
+      return userRes.data;  // <-- ⭐ return user for immediate use
     } catch (error) {
       console.error("Login failed:", error);
       throw error;

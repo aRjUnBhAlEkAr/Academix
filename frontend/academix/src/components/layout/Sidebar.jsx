@@ -1,45 +1,28 @@
-import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import { AuthContext } from "../../context/AuthContext";
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { menuConfig } from "./menuConfig";
+import "../../styles/Layout.css";
 
-const Sidebar = () => {
-  const { user } = useContext(AuthContext);
-
-  const menus = {
-    student: [
-      { name: "Dashboard", path: "/dashboard/student" },
-      { name: "Courses", path: "/courses" },
-      { name: "Attendance", path: "/attendance" },
-    ],
-    teacher: [
-      { name: "Dashboard", path: "/dashboard/teacher" },
-      { name: "Classes", path: "/classes" },
-      { name: "Attendance", path: "/attendance" },
-    ],
-    college_admin: [
-      { name: "Dashboard", path: "/dashboard/admin" },
-      { name: "Teachers", path: "/teachers" },
-      { name: "Students", path: "/students" },
-      { name: "Academics", path: "/academics" },
-    ],
-    superuser: [
-      { name: "Dashboard", path: "/dashboard/superadmin" },
-      { name: "Colleges", path: "/colleges" },
-      { name: "Reports", path: "/reports" },
-    ],
-  };
-
-  const role = user?.role || "student";
+const Sidebar = ({ role }) => {
+  const menus = menuConfig[role] || [];
 
   return (
     <aside className="sidebar">
-      <ul>
-        {menus[role].map((item) => (
-          <li key={item.path}>
-            <Link to={item.path}>{item.name}</Link>
-          </li>
+      <div className="sidebar-title">Academix</div>
+
+      <nav>
+        {menus.map((item, idx) => (
+          <NavLink
+            key={idx}
+            to={item.path}
+            className={({ isActive }) =>
+              isActive ? "sidebar-link active" : "sidebar-link"
+            }
+          >
+            {item.label}
+          </NavLink>
         ))}
-      </ul>
+      </nav>
     </aside>
   );
 };
